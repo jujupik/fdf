@@ -1,8 +1,8 @@
 #include "libft.h"
 
-void ft_swap(int *a, int *b)
+void ft_swap_float(float *a, float *b)
 {
-    int tmp;
+    float tmp;
 
     if (a == NULL || b == NULL)
         return ;

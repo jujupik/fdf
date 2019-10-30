@@ -20,19 +20,10 @@ t_vector2i   *malloc_t_vector2i(int p_x, int p_y)
     return (result);
 }
 
-void print_t_vector2i(t_vector2i vector)
-{
-    ft_putstr("(");
-    ft_putnbr(vector.x);
-    ft_putstr(" / ");
-    ft_putnbr(vector.y);
-    ft_putstr(")");
-}
-
 void swap_t_vector2i(t_vector2i *a, t_vector2i *b)
 {
-    ft_swap(&(a->x), &(b->x));
-    ft_swap(&(a->y), &(b->y));
+    ft_swap_int(&(a->x), &(b->x));
+    ft_swap_int(&(a->y), &(b->y));
 }
 
 BOOL is_t_vector2i_equal(t_vector2i a, t_vector2i b)

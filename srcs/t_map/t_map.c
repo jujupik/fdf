@@ -1,5 +1,36 @@
 #include "fdf.h"
 
+void create_point_on_screen(t_map *ptr_map)
+{
+    int i;
+
+    ptr_map->point_on_screen = new_t_vector2i_tab(ptr_map->nb_elem.x);
+    i = 0;
+    while (i < ptr_map->nb_elem.x)
+    {
+        ptr_map->point_on_screen[i] = new_t_vector2i_array(ptr_map->nb_elem.y);
+        i++;
+    }
+}
+
+void reset_point_on_screen(t_map *ptr_map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < ptr_map->nb_elem.x)
+    {
+        j = 0;
+        while (j < ptr_map->nb_elem.y)
+        {
+            ptr_map->point_on_screen[i][j] = create_t_vector2i(-1, -1);
+            j++;
+        }
+        i++;
+    }
+}
+
 t_map create_t_map(char *p_path)
 {
     t_map result;
@@ -9,6 +40,10 @@ t_map create_t_map(char *p_path)
     result.path = p_path;
     result.nb_elem = create_t_vector2i(0, 0);
     result.tile_size = create_t_vector2i(50, 50);
+    result.scaled_tile_size = create_t_vector2f(
+            (float)(result.tile_size.x),
+            (float)(result.tile_size.y)
+        );
     result.offset = create_t_vector2i(0, 0);
     result.zoom = -1.0f;
     result.height_ratio = 5.5f;
@@ -18,6 +53,9 @@ t_map create_t_map(char *p_path)
         error_exit(1, "Can't open a file");
     while (get_next_line(fd, &line) > 0)
         t_map_add_line(&result, line);
+
+    create_point_on_screen(&result);
+
     return(result);
 }
 
@@ -73,6 +111,10 @@ void t_map_change_view_mode(t_map *ptr_map, int new_view_mode)
 {
     ptr_map->view_mode = new_view_mode;
 
+    ptr_map->scaled_tile_size = create_t_vector2f(
+            (float)(ptr_map->tile_size.x),
+            (float)(ptr_map->tile_size.y)
+        );
     ptr_map->zoom = -1.0f;
     ptr_map->offset = create_t_vector2i(0, 0);
     ptr_map->height_ratio = 5.5f;
@@ -99,26 +141,34 @@ void t_map_calc_zoom(t_application *ptr_app, t_map *ptr_map)
     screen_size.y = value[3] - value[2];
     ratio[0] = ptr_app->size.x / (float)(screen_size.x);
     ratio[1] = ptr_app->size.y / (float)(screen_size.y);
-    ptr_map->zoom = ratio[0];
-    if (ptr_map->zoom > ratio[1])
-        ptr_map->zoom = ratio[1];
+    ptr_map->zoom = (ratio[0] < ratio[1] ? ratio[0] : ratio[1]);
+    ptr_map->scaled_tile_size.x = ptr_map->zoom * ptr_map->tile_size.x;
+    ptr_map->scaled_tile_size.y = ptr_map->zoom * ptr_map->tile_size.y
+                        / (ptr_map->view_mode == ISOMETRIC ? 2 : 1);
+    ptr_map->scaled_height_ratio = ptr_map->height_ratio * ptr_map->zoom;
 }
 
 void	t_map_calc_offset(t_application *ptr_app, t_map *ptr_map)
 {
+    int value[2];
     t_vector2i points[4];
     int reste_x;
     int reste_y;
 
+    value[0] = ptr_map->nb_elem.x - 1;
+    value[1] = ptr_map->nb_elem.y - 1;
     points[0] = convert_world_to_screen(ptr_map, 0, 0, 0);
-    points[1] = convert_world_to_screen(ptr_map, ptr_map->nb_elem.x - 1, 0, 0);
-    points[2] = convert_world_to_screen(ptr_map, 0, ptr_map->nb_elem.y - 1, 0);
-    points[3] = convert_world_to_screen(ptr_map, ptr_map->nb_elem.x - 1,
-                    ptr_map->nb_elem.y - 1, 0);
+    points[1] = convert_world_to_screen(ptr_map, value[0], 0, 0);
+    points[2] = convert_world_to_screen(ptr_map, 0, value[1], 0);
+    points[3] = convert_world_to_screen(ptr_map, value[0], value[1], 0);
     reste_x = ptr_app->size.x - points[1].x - points[2].x;
     reste_y = ptr_app->size.y - points[3].y - points[0].y;
     ptr_map->offset.x = reste_x / 2;
     ptr_map->offset.y = reste_y / 2;
+    ptr_map->point_on_screen[0][0] = create_t_vector2i(-1, -1);
+    ptr_map->point_on_screen[value[0]][0] = create_t_vector2i(-1, -1);
+    ptr_map->point_on_screen[0][value[1]] = create_t_vector2i(-1, -1);
+    ptr_map->point_on_screen[value[0]][value[1]] = create_t_vector2i(-1, -1);
 }
 
 void t_map_calc_data(t_application *ptr_app, t_map *ptr_map)
@@ -127,5 +177,23 @@ void t_map_calc_data(t_application *ptr_app, t_map *ptr_map)
     {
         t_map_calc_zoom(ptr_app, ptr_map);
         t_map_calc_offset(ptr_app, ptr_map);
+    }
+}
+
+void t_map_change_height_ratio(t_map *ptr_map, float delta)
+{
+    ptr_map->height_ratio += delta;
+    ptr_map->scaled_height_ratio = ptr_map->height_ratio * ptr_map->zoom;
+}
+
+void t_map_change_zoom(t_map *ptr_map, float delta)
+{
+    if (ptr_map->zoom + delta >= 0.25f)
+    {
+        ptr_map->zoom *= delta;
+        ptr_map->scaled_height_ratio = ptr_map->height_ratio * ptr_map->zoom;
+        ptr_map->scaled_tile_size.x = ptr_map->zoom * ptr_map->tile_size.x;
+        ptr_map->scaled_tile_size.y = ptr_map->zoom * ptr_map->tile_size.y
+                        / (ptr_map->view_mode == ISOMETRIC ? 2 : 1);
     }
 }

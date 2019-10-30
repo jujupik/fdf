@@ -5,8 +5,8 @@ static void calc_steep(BOOL *steep, t_vector2i *a, t_vector2i *b)
     *steep = (ft_abs(b->y - a->y) > ft_abs(b->x - a->x) ? TRUE : FALSE);
     if (*steep == TRUE)
     {
-        ft_swap(&(a->x), &(a->y));
-        ft_swap(&(b->x), &(b->y));
+        ft_swap_int(&(a->x), &(a->y));
+        ft_swap_int(&(b->x), &(b->y));
     }
     if (a->x > b->x)
         swap_t_vector2i(a, b);

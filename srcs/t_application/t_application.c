@@ -82,3 +82,10 @@ void render_screen(t_application *app)
     if (ret == 0)
         error_exit(1, "Can't render screen");
 }
+
+BOOL is_point_on_screen(t_application *ptr_app, t_vector2i point)
+{
+    if (point.x < 0 || point.x >= ptr_app->size.x || point.y < 0 || point.y >= ptr_app->size.y)
+        return (FALSE);
+    return (TRUE);
+}

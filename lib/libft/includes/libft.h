@@ -97,7 +97,8 @@ void 				ft_inttab_cpy(int **dest, int **src);
 void 				ft_puttab(char **tab);
 void 				ft_putinttab(int **tab, int len);
 int 				ft_abs(int src);
-void 				ft_swap(int *a, int *b);
+void 				ft_swap_int(int *a, int *b);
+void 				ft_swap_float(float *a, float *b);
 int 				ft_min(int nb_number, ...);
 int 				ft_max(int nb_number, ...);
 #endif

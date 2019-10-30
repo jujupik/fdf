@@ -17,9 +17,11 @@ typedef struct  s_application
 
 t_application create_t_application(char *prog_name, int width, int height);
 t_application *malloc_t_application(char *prog_name, int width, int height);
-void delete_t_application(t_application application);
-void free_t_application(t_application *application);
-void clear_screen(t_application *application);
-void render_screen(t_application *application);
-int	run_t_application(t_application *application, int funct_ptr(int, void *), void *param);
+void delete_t_application(t_application app);
+void free_t_application(t_application *ptr_app);
+void clear_screen(t_application *ptr_app);
+void render_screen(t_application *ptr_app);
+int	run_t_application(t_application *ptr_app, int funct_ptr(int, void *), void *param);
+BOOL is_point_on_screen(t_application *ptr_app, t_vector2i point);
+
 #endif

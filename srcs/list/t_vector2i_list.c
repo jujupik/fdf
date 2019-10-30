@@ -61,7 +61,7 @@ void	             t_vector2i_list_add(t_vector2i_list *list, t_vector2i to_add)
         tmp = list->data;
         list->data = new_t_vector2i_tab(nb_du_null);
         copy_t_vector2i_tab(list->data, tmp);
-        list->data[nb_du_null - 1] = new_t_vector2i_array(list->line_len);
+        list->data[nb_du_null] = new_t_vector2i_array(list->line_len);
         list->max_len += list->line_len;
         free(tmp);
     }

@@ -1,25 +1,49 @@
 #include "fdf.h"
 
-t_vector2i convert_world_to_screen(t_map *ptr_map, int x, int y, int height)
+static t_vector2i calc_iso(t_map *ptr_map, int x, int y, int height)
 {
     t_vector2i result;
 
-    if (ptr_map->view_mode == ORTHOGONAL)
-    {
-        result.x = x * ptr_map->tile_size.x * ptr_map->zoom + ptr_map->offset.x;
-        result.y = y * ptr_map->tile_size.y * ptr_map->zoom + ptr_map->offset.y - height * ptr_map->height_ratio * ptr_map->zoom;
-    }
-    else if(ptr_map->view_mode == ISOMETRIC)
-    {
-        result.x = (x - y) * ptr_map->tile_size.x * ptr_map->zoom + ptr_map->offset.x;
-        result.y = (x + y) * ptr_map->tile_size.y / 2 * ptr_map->zoom + ptr_map->offset.y - height * ptr_map->height_ratio * ptr_map->zoom;
-    }
-    else
-    {
-        result.x = -1;
-        result.y = -1;
-    }
+    result.x = (x - y) * ptr_map->scaled_tile_size.x
+                        + ptr_map->offset.x;
+    result.y = (x + y) * ptr_map->scaled_tile_size.y
+                        + ptr_map->offset.y
+                        - height * ptr_map->scaled_height_ratio;
+
     return (result);
+}
+
+static t_vector2i calc_ortho(t_map *ptr_map, int x, int y, int height)
+{
+    t_vector2i result;
+
+    result.x = x * ptr_map->scaled_tile_size.x
+                        + ptr_map->offset.x;
+    result.y = y * ptr_map->scaled_tile_size.y
+                        + ptr_map->offset.y
+                        - height * ptr_map->scaled_height_ratio;
+
+    return (result);
+}
+
+t_vector2i convert_world_to_screen(t_map *ptr_map, int x, int y, int height)
+{
+    if (x < 0 || y < 0 || x >= ptr_map->nb_elem.x || y >= ptr_map->nb_elem.y)
+    {
+        if (ptr_map->view_mode == ORTHOGONAL)
+            return (calc_ortho(ptr_map, x, y, height));
+        else if(ptr_map->view_mode == ISOMETRIC)
+            return (calc_iso(ptr_map, x, y, height));
+    }
+    if (is_t_vector2i_equal(ptr_map->point_on_screen[x][y], create_t_vector2i(-1, -1)) == TRUE)
+    {
+        if (ptr_map->view_mode == ORTHOGONAL)
+            ptr_map->point_on_screen[x][y] = calc_ortho(ptr_map, x, y, height);
+        else if(ptr_map->view_mode == ISOMETRIC)
+            ptr_map->point_on_screen[x][y] = calc_iso(ptr_map, x, y, height);
+    }
+
+    return (ptr_map->point_on_screen[x][y]);
 }
 
 static void draw_map_tile(t_application *ptr_app, t_map *ptr_map, t_vector2i pos)
@@ -54,6 +78,7 @@ void draw_t_map(t_application *ptr_app, t_map *ptr_map)
 {
     t_vector2i pos;
 
+    reset_point_on_screen(ptr_map);
     t_map_calc_data(ptr_app, ptr_map);
     pos.x = 0;
     while (pos.x < ptr_map->nb_elem.x)

@@ -6,10 +6,13 @@ typedef struct  s_map
     char *path;
     t_vector2i nb_elem;
     int **height_tab;
+    t_vector2i **point_on_screen;
     t_vector2i tile_size;
+    t_vector2f scaled_tile_size;
     float zoom;
     t_vector2i offset;
     float height_ratio;
+    float scaled_height_ratio;
     int view_mode;
 }               t_map;
 
@@ -24,4 +27,8 @@ void t_map_calc_offset(t_application *ptr_app, t_map *ptr_map);
 t_vector2i convert_world_to_screen(t_map *ptr_map, int x, int y, int height);
 void t_map_change_view_mode(t_map *ptr_map, int new_view_mode);
 void t_map_calc_data(t_application *ptr_app, t_map *ptr_map);
+void t_map_change_height_ratio(t_map *ptr_map, float delta);
+void t_map_change_zoom(t_map *ptr_map, float delta);
+void create_point_on_screen(t_map *ptr_map);
+void reset_point_on_screen(t_map *ptr_map);
 #endif

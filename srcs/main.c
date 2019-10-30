@@ -35,9 +35,9 @@ int test(int key, void *param)
     else if (key == ESC_KEY)
         exit(0);
     else if (key == NKMN_KEY)
-        ptr_map->height_ratio -= 0.25f;
+        t_map_change_height_ratio(ptr_map, -0.25f);
     else if (key == NKPL_KEY)
-        ptr_map->height_ratio += 0.25f;
+        t_map_change_height_ratio(ptr_map, +0.25f);
     else if (key == W_KEY)
         ptr_map->offset.y -= ptr_map->tile_size.y * ptr_map->zoom / 4;
     else if (key == S_KEY)
@@ -46,6 +46,10 @@ int test(int key, void *param)
         ptr_map->offset.x -= ptr_map->tile_size.x * ptr_map->zoom / 4;
     else if (key == D_KEY)
         ptr_map->offset.x += ptr_map->tile_size.x * ptr_map->zoom / 4;
+    else if (key == Q_KEY)
+        t_map_change_zoom(ptr_map, 0.8f);
+    else if (key == E_KEY)
+        t_map_change_zoom(ptr_map, 1.2f);
     draw_fdf(ptr_app, ptr_map);
     return (0);
 }
