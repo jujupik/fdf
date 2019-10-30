@@ -14,7 +14,6 @@ void draw_point(t_application *app, t_vector2i pos, t_color color, int size)
         {
             pixel.x = pos.x + i;
             pixel.y = pos.y + j;
-
             put_pixel(app, pixel, color);
             j++;
         }

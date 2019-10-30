@@ -6,7 +6,6 @@ t_vector2i   create_t_vector2i(int p_x, int p_y)
 
     result.x = p_x;
     result.y = p_y;
-
     return (result);
 }
 
@@ -17,15 +16,12 @@ t_vector2i   *malloc_t_vector2i(int p_x, int p_y)
     result = (t_vector2i *)malloc(sizeof(t_vector2i));
     if (result == NULL)
         error_exit(32, "Can't malloc a t_vector2i");
-
     *result = create_t_vector2i(p_x, p_y);
-
     return (result);
 }
 
 void print_t_vector2i(t_vector2i vector)
 {
-    //   "(" + x + " / " + y + ")"
     ft_putstr("(");
     ft_putnbr(vector.x);
     ft_putstr(" / ");

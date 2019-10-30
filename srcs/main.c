@@ -14,6 +14,13 @@ struct ** avec un x dedans -> (*struct)->x
 
 */
 
+static void draw_fdf(t_application *ptr_app, t_map *ptr_map)
+{
+    clear_screen(ptr_app);
+    draw_t_map(ptr_app, ptr_map);
+    render_screen(ptr_app);
+}
+
 int test(int key, void *param)
 {
     t_application *ptr_app;
@@ -21,7 +28,6 @@ int test(int key, void *param)
 
     ptr_app = ((void **)param)[0];
     ptr_map = ((void **)param)[1];
-
     if (key == K1_KEY)
         t_map_change_view_mode(ptr_map, ORTHOGONAL);
     else if (key == K2_KEY)
@@ -40,35 +46,18 @@ int test(int key, void *param)
         ptr_map->offset.x -= ptr_map->tile_size.x * ptr_map->zoom / 4;
     else if (key == D_KEY)
         ptr_map->offset.x += ptr_map->tile_size.x * ptr_map->zoom / 4;
-
-
-    clear_screen(ptr_app);
-
-    draw_t_map(ptr_app, ptr_map);
-
-    render_screen(ptr_app);
-
-    printf("Evenement execute with key = %d !\n", key);
+    draw_fdf(ptr_app, ptr_map);
     return (0);
 }
 
 int main(int argc, char **argv)
 {
-    (void)argv;
     if (argc != 2)
         error_exit(1, "Bad number of argument -> try ./fdf [MAP_NAME]");
 
     t_application app = create_t_application("fdf", 840, 680);
-
     t_map map = create_t_map(argv[1]);
-
-    clear_screen(&app);
-
-    draw_t_map(&app, &map);
-
-    render_screen(&app);
-
-    //  0) application concernee  1) pointeur de fonction de type void foo(void *ptr)   2) le parametre a envoyer a foo
+    draw_fdf(&app, &map);
     run_t_application(&app, test, &map);
 
     return (0);
