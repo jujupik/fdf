@@ -1,0 +1,42 @@
+t_vector2i actual_point_on_screen;
+t_vector2i target_point_on_screen;
+t_color flat;
+t_color not_flat;
+int height;
+int target_height;
+int i;
+int j;
+
+flat = create_t_color(255, 255, 255, 255);
+not_flat = create_t_color(0, 255, 255, 255);
+
+if (ptr_map->zoom == -1.0f)
+{
+    t_map_calc_zoom(ptr_app, ptr_map);
+    t_map_calc_offset(ptr_app, ptr_map);
+}
+i = 0;
+while (i < ptr_map->nb_elem.x)
+{
+    j = 0;
+    while (j < ptr_map->nb_elem.y)
+    {
+        height = ptr_map->height_tab[j][i];
+        actual_point_on_screen = convert_world_to_screen(ptr_map, i, j, height);
+
+        if (i < ptr_map->nb_elem.x - 1)
+        {
+            target_height = ptr_map->height_tab[j][i + 1];
+            target_point_on_screen = convert_world_to_screen(ptr_map, i + 1, j, target_height);
+            draw_line(ptr_app, actual_point_on_screen, target_point_on_screen, (target_height == height && height == 0 ? flat : not_flat));
+        }
+        if (j < ptr_map->nb_elem.y - 1)
+        {
+            target_height = ptr_map->height_tab[j + 1][i];
+            target_point_on_screen = convert_world_to_screen(ptr_map, i, j + 1, target_height);
+            draw_line(ptr_app, actual_point_on_screen, target_point_on_screen, (target_height == height && height == 0 ? flat : not_flat));
+        }
+        j++;
+    }
+    i++;
+}
