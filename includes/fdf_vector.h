@@ -21,8 +21,8 @@ typedef struct	s_vector2f
     float y;
 }				t_vector2f;
 
-t_vector2f create_t_vector2f(int p_x, int p_y);
-t_vector2f *malloc_t_vector2f(int p_x, int p_y);
+t_vector2f create_t_vector2f(float p_x, float p_y);
+t_vector2f *malloc_t_vector2f(float p_x, float p_y);
 void swap_t_vector2f(t_vector2f *a, t_vector2f *b);
 t_vector2f **new_t_vector2f_tab(size_t size);
 t_vector2f *new_t_vector2f_array(size_t size);

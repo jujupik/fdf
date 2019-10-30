@@ -9,6 +9,7 @@ typedef struct  s_map
     t_vector2i **point_on_screen;
     t_vector2i tile_size;
     t_vector2f scaled_tile_size;
+    t_vector2f tile_offset;
     float zoom;
     t_vector2i offset;
     float height_ratio;
@@ -31,4 +32,6 @@ void t_map_change_height_ratio(t_map *ptr_map, float delta);
 void t_map_change_zoom(t_map *ptr_map, float delta);
 void create_point_on_screen(t_map *ptr_map);
 void reset_point_on_screen(t_map *ptr_map);
+void t_map_change_tile_offset(t_map *ptr_map, float delta_x, float delta_y);
+
 #endif

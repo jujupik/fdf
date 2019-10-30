@@ -39,13 +39,13 @@ int test(int key, void *param)
     else if (key == NKPL_KEY)
         t_map_change_height_ratio(ptr_map, +0.25f);
     else if (key == W_KEY)
-        ptr_map->offset.y -= ptr_map->tile_size.y * ptr_map->zoom / 4;
+        t_map_change_tile_offset(ptr_map, 0, -0.25f);
     else if (key == S_KEY)
-        ptr_map->offset.y += ptr_map->tile_size.y * ptr_map->zoom / 4;
+        t_map_change_tile_offset(ptr_map, 0, +0.25f);
     else if (key == A_KEY)
-        ptr_map->offset.x -= ptr_map->tile_size.x * ptr_map->zoom / 4;
+        t_map_change_tile_offset(ptr_map, -0.25f, 0);
     else if (key == D_KEY)
-        ptr_map->offset.x += ptr_map->tile_size.x * ptr_map->zoom / 4;
+        t_map_change_tile_offset(ptr_map, +0.25f, 0);
     else if (key == Q_KEY)
         t_map_change_zoom(ptr_map, 0.8f);
     else if (key == E_KEY)

@@ -4,11 +4,11 @@ static t_vector2i calc_iso(t_map *ptr_map, int x, int y, int height)
 {
     t_vector2i result;
 
-    result.x = (x - y) * ptr_map->scaled_tile_size.x
-                        + ptr_map->offset.x;
-    result.y = (x + y) * ptr_map->scaled_tile_size.y
-                        + ptr_map->offset.y
-                        - height * ptr_map->scaled_height_ratio;
+    result.x = ((x - ptr_map->tile_offset.x) - (y - ptr_map->tile_offset.y))
+                * ptr_map->scaled_tile_size.x + ptr_map->offset.x;
+    result.y = ((x - ptr_map->tile_offset.x) + (y - ptr_map->tile_offset.y))
+                * ptr_map->scaled_tile_size.y + ptr_map->offset.y
+                - height * ptr_map->scaled_height_ratio;
 
     return (result);
 }
@@ -17,9 +17,9 @@ static t_vector2i calc_ortho(t_map *ptr_map, int x, int y, int height)
 {
     t_vector2i result;
 
-    result.x = x * ptr_map->scaled_tile_size.x
+    result.x = (x - ptr_map->tile_offset.x) * ptr_map->scaled_tile_size.x
                         + ptr_map->offset.x;
-    result.y = y * ptr_map->scaled_tile_size.y
+    result.y = (y - ptr_map->tile_offset.y) * ptr_map->scaled_tile_size.y
                         + ptr_map->offset.y
                         - height * ptr_map->scaled_height_ratio;
 

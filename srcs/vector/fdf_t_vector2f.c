@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-t_vector2f   create_t_vector2f(int p_x, int p_y)
+t_vector2f   create_t_vector2f(float p_x, float p_y)
 {
     t_vector2f result;
 
@@ -9,7 +9,7 @@ t_vector2f   create_t_vector2f(int p_x, int p_y)
     return (result);
 }
 
-t_vector2f   *malloc_t_vector2f(int p_x, int p_y)
+t_vector2f   *malloc_t_vector2f(float p_x, float p_y)
 {
     t_vector2f   *result;
 

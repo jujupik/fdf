@@ -42,20 +42,25 @@ t_map create_t_map(char *p_path)
     result.tile_size = create_t_vector2i(50, 50);
     result.scaled_tile_size = create_t_vector2f(
             (float)(result.tile_size.x),
-            (float)(result.tile_size.y)
-        );
+            (float)(result.tile_size.y));
     result.offset = create_t_vector2i(0, 0);
     result.zoom = -1.0f;
     result.height_ratio = 5.5f;
     result.view_mode = ORTHOGONAL;
+    result.height_tab = NULL;
     fd = open(result.path, O_RDONLY);
     if (fd < 0)
         error_exit(1, "Can't open a file");
     while (get_next_line(fd, &line) > 0)
+    {
         t_map_add_line(&result, line);
-
+        free(line);
+        line = NULL;
+    }
+    free(line);
+    result.tile_offset = create_t_vector2f(((float)(result.nb_elem.x)
+        - 1.0f) / 2.0f, ((float)(result.nb_elem.y) - 1.0f) / 2.0f);
     create_point_on_screen(&result);
-
     return(result);
 }
 
@@ -102,8 +107,8 @@ void t_map_add_line(t_map *ptr_map, char *line)
         ft_inttab_cpy(tmp, ptr_map->height_tab);
         free(ptr_map->height_tab);
     }
-    tmp[ptr_map->nb_elem.y - 1] = ft_intparse_tab(tab);
     ptr_map->height_tab = tmp;
+    ptr_map->height_tab[ptr_map->nb_elem.y - 1] = ft_intparse_tab(tab);
     ft_tab_free(tab);
 }
 
@@ -166,6 +171,7 @@ void	t_map_calc_offset(t_application *ptr_app, t_map *ptr_map)
     ptr_map->offset.x = reste_x / 2;
     ptr_map->offset.y = reste_y / 2;
     ptr_map->point_on_screen[0][0] = create_t_vector2i(-1, -1);
+
     ptr_map->point_on_screen[value[0]][0] = create_t_vector2i(-1, -1);
     ptr_map->point_on_screen[0][value[1]] = create_t_vector2i(-1, -1);
     ptr_map->point_on_screen[value[0]][value[1]] = create_t_vector2i(-1, -1);
@@ -196,4 +202,10 @@ void t_map_change_zoom(t_map *ptr_map, float delta)
         ptr_map->scaled_tile_size.y = ptr_map->zoom * ptr_map->tile_size.y
                         / (ptr_map->view_mode == ISOMETRIC ? 2 : 1);
     }
+}
+
+void t_map_change_tile_offset(t_map *ptr_map, float delta_x, float delta_y)
+{
+    ptr_map->tile_offset.x += delta_x;
+    ptr_map->tile_offset.y += delta_y;
 }

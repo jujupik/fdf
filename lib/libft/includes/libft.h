@@ -15,6 +15,7 @@
 
 # include <string.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <limits.h>
@@ -101,4 +102,6 @@ void 				ft_swap_int(int *a, int *b);
 void 				ft_swap_float(float *a, float *b);
 int 				ft_min(int nb_number, ...);
 int 				ft_max(int nb_number, ...);
+void				ft_get_leaks(char *prog_name, char *msg);
+
 #endif
