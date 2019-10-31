@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_application_run.c                                :+:      :+:    :+:   */
+/*   t_color_basics.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,35 @@
 
 #include "fdf.h"
 
-int	run_t_application(t_application *app, int funct_ptr(int, void *),
-	void *param)
+t_color	create_t_color(float p_r, float p_g, float p_b, float p_a)
 {
-	void *ptr_strange[2];
+	t_color	result;
 
-	ptr_strange[0] = app;
-	ptr_strange[1] = param;
-	if (funct_ptr != NULL)
-		mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, funct_ptr, ptr_strange);
-	mlx_loop(app->mlx_ptr);
-	return (0);
+	result.r = p_r;
+	result.g = p_g;
+	result.b = p_b;
+	result.a = p_a;
+	return (result);
+}
+
+t_color	*malloc_t_color(float p_r, float p_g, float p_b, float p_a)
+{
+	t_color	*result;
+
+	result = (t_color *)malloc(sizeof(t_color));
+	if (result == NULL)
+		error_exit(1, "Can't malloc t_color");
+	*result = create_t_color(p_r, p_g, p_b, p_a);
+	return (result);
+}
+
+void	delete_t_color(t_color color)
+{
+	(void)color;
+}
+
+void	free_t_color(t_color *color)
+{
+	delete_t_color(*color);
+	free(color);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_application_run.c                                :+:      :+:    :+:   */
+/*   t_color_calc_int.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,46 @@
 
 #include "fdf.h"
 
-int	run_t_application(t_application *app, int funct_ptr(int, void *),
-	void *param)
+t_color	t_color_add_int(t_color a, int delta)
 {
-	void *ptr_strange[2];
+	t_color result;
 
-	ptr_strange[0] = app;
-	ptr_strange[1] = param;
-	if (funct_ptr != NULL)
-		mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, funct_ptr, ptr_strange);
-	mlx_loop(app->mlx_ptr);
-	return (0);
+	result.r = a.r + delta;
+	result.g = a.g + delta;
+	result.b = a.b + delta;
+	result.a = a.a;
+	return (result);
+}
+
+t_color	t_color_substract_int(t_color a, int delta)
+{
+	t_color result;
+
+	result.r = a.r - delta;
+	result.g = a.g - delta;
+	result.b = a.b - delta;
+	result.a = a.a;
+	return (result);
+}
+
+t_color	t_color_mult_by_int(t_color a, int delta)
+{
+	t_color result;
+
+	result.r = a.r * delta;
+	result.g = a.g * delta;
+	result.b = a.b * delta;
+	result.a = a.a;
+	return (result);
+}
+
+t_color	t_color_divide_by_int(t_color a, int delta)
+{
+	t_color result;
+
+	result.r = a.r / delta;
+	result.g = a.g / delta;
+	result.b = a.b / delta;
+	result.a = a.a;
+	return (result);
 }
