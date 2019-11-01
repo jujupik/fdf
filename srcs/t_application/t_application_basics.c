@@ -12,10 +12,11 @@
 
 #include "fdf.h"
 
-t_application	create_t_application(char *prog_name, int width, int height, int seed)
+t_application	create_t_application(char *prog_name, int width, int height,
+		int seed)
 {
 	t_application	result;
-	time_t t;
+	time_t			t;
 
 	if (seed == -1)
 		seed = (int)time(&t);
@@ -33,7 +34,8 @@ t_application	create_t_application(char *prog_name, int width, int height, int s
 	return (result);
 }
 
-t_application	*malloc_t_application(char *prog_name, int width, int height, int seed)
+t_application	*malloc_t_application(char *prog_name, int width, int height,
+		int seed)
 {
 	t_application	*result;
 

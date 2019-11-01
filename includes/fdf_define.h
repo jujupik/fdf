@@ -23,6 +23,8 @@
 # define R_COMP 2
 # define A_COMP 3
 
-# define ARG_ERROR "Bad argument format -> try ./fdf [MAP_NAME] --c1 [Color] --c2 [Color] --mode [MODE]\nMode available : ORTHOGONAL / ISOMETRIC / MOVING_ORTHOGONAL / MOVING_ISOMETRIC"
+# define TEXT_ERROR "Bad argument format -> "
+# define USAGE "try ./fdf [MAP_NAME] --c1 [Color] --c2 [Color] --mode [MODE]\n"
+# define MODE_CONTENT "Mode available : ORTHOGONAL / ISOMETRIC\n"
 
 #endif

@@ -26,4 +26,9 @@
 # include "fdf_t_vector2i_list.h"
 # include "fdf_algorithm.h"
 
+void		draw_fdf(t_application *ptr_app, t_map *ptr_map);
+int			handle_key(int key, void *param);
+void		parse_argv(int argc, char **argv, t_map *ptr_map);
+void		print_usage(void);
+
 #endif

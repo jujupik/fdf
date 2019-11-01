@@ -21,7 +21,8 @@ static void			draw_map_tile_south(t_application *ptr_app, t_map *ptr_map,
 
 	height[0] = ptr_map->height_tab[pos.y][pos.x];
 	actual = convert_world_to_screen(ptr_map, pos.x, pos.y, height[0]);
-	pixel[0] = create_t_pixel(actual, (height[0] == 0 ? ptr_map->floor : ptr_map->not_floor));
+	pixel[0] = create_t_pixel(actual,
+			(height[0] == 0 ? ptr_map->floor : ptr_map->not_floor));
 	put_pixel(ptr_app, actual, ptr_map->floor);
 	if (pos.y + 1 < ptr_map->nb_elem.y)
 	{
@@ -42,7 +43,8 @@ static void			draw_map_tile_east(t_application *ptr_app, t_map *ptr_map,
 
 	height[0] = ptr_map->height_tab[pos.y][pos.x];
 	actual = convert_world_to_screen(ptr_map, pos.x, pos.y, height[0]);
-	pixel[0] = create_t_pixel(actual, (height[0] == 0 ? ptr_map->floor : ptr_map->not_floor));
+	pixel[0] = create_t_pixel(actual,
+			(height[0] == 0 ? ptr_map->floor : ptr_map->not_floor));
 	put_pixel(ptr_app, actual, ptr_map->not_floor);
 	if (pos.x + 1 < ptr_map->nb_elem.x)
 	{

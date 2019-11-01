@@ -14,10 +14,10 @@
 
 void	error_exit(int nb, char *str)
 {
-	ft_putstr("Error [");
-	ft_putnbr(nb);
-	ft_putstr("] : ");
-	ft_putstr(str);
-	ft_putstr("\n");
+	ft_putstr_fd("Error [", 2);
+	ft_putnbr_fd(nb, 2);
+	ft_putstr_fd("] : ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("\n", 2);
 	exit(nb);
 }

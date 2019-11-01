@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static void read_map_file(t_map *ptr_map)
+static void	read_map_file(t_map *ptr_map)
 {
 	int		fd;
 	char	*line;
@@ -31,7 +31,7 @@ static void read_map_file(t_map *ptr_map)
 		error_exit(1, "No tile to draw in map file");
 }
 
-t_map	create_t_map(char *p_path)
+t_map		create_t_map(char *p_path)
 {
 	t_map	result;
 
@@ -54,7 +54,7 @@ t_map	create_t_map(char *p_path)
 	return (result);
 }
 
-t_map	*malloc_t_map(char *p_path)
+t_map		*malloc_t_map(char *p_path)
 {
 	t_map	*result;
 
@@ -65,12 +65,12 @@ t_map	*malloc_t_map(char *p_path)
 	return (result);
 }
 
-void	delete_t_map(t_map map)
+void		delete_t_map(t_map map)
 {
 	(void)map;
 }
 
-void	free_t_map(t_map *map)
+void		free_t_map(t_map *map)
 {
 	delete_t_map(*map);
 	free(map);

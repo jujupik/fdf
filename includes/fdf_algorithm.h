@@ -13,7 +13,7 @@
 #ifndef FDF_ALGORITHM_H
 # define FDF_ALGORITHM_H
 
-int generate_nbr(int min, int max);
-t_vector2i_list calc_line_2d(t_vector2i point_a, t_vector2i point_b);
+int					generate_nbr(int min, int max);
+t_vector2i_list		calc_line_2d(t_vector2i point_a, t_vector2i point_b);
 
 #endif

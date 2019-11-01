@@ -32,13 +32,11 @@ void	t_map_change_zoom(t_map *ptr_map, float delta)
 {
 	int ratio;
 
-	if (ptr_map->view_mode == ISOMETRIC)
-		ratio = 2;
-	else if (ptr_map->view_mode == MOVING_ISOMETRIC)
+	if (ptr_map->view_mode == ISOMETRIC ||
+		ptr_map->view_mode == MOVING_ISOMETRIC)
 		ratio = 2;
 	else
 		ratio = 1;
-
 	if (ptr_map->zoom + delta >= 0.25f)
 	{
 		ptr_map->zoom *= delta;
