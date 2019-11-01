@@ -30,13 +30,22 @@ void	t_map_change_height_ratio(t_map *ptr_map, float delta)
 
 void	t_map_change_zoom(t_map *ptr_map, float delta)
 {
+	int ratio;
+
+	if (ptr_map->view_mode == ISOMETRIC)
+		ratio = 2;
+	else if (ptr_map->view_mode == MOVING_ISOMETRIC)
+		ratio = 2;
+	else
+		ratio = 1;
+
 	if (ptr_map->zoom + delta >= 0.25f)
 	{
 		ptr_map->zoom *= delta;
 		ptr_map->scaled_height_ratio = ptr_map->height_ratio * ptr_map->zoom;
 		ptr_map->scaled_tile_size.x = ptr_map->zoom * ptr_map->tile_size.x;
-		ptr_map->scaled_tile_size.y = ptr_map->zoom * ptr_map->tile_size.y /
-			(ptr_map->view_mode == ISOMETRIC ? 2 : 1);
+		ptr_map->scaled_tile_size.y =
+				ptr_map->zoom * ptr_map->tile_size.y / ratio;
 	}
 }
 

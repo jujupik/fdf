@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap_float.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/01 13:20:48 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/11/01 13:20:51 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_swap_float(float *a, float *b)
+void	ft_swap_float(float *a, float *b)
 {
-    float tmp;
+	float tmp;
 
-    if (a == NULL || b == NULL)
-        return ;
-
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
+	if (a == NULL || b == NULL)
+		return ;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

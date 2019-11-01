@@ -34,10 +34,7 @@ void	t_map_calc_zoom(t_application *ptr_app, t_map *ptr_map)
 	ratio[0] = ptr_app->size.x / (float)(screen_size.x);
 	ratio[1] = ptr_app->size.y / (float)(screen_size.y);
 	ptr_map->zoom = (ratio[0] < ratio[1] ? ratio[0] : ratio[1]);
-	ptr_map->scaled_tile_size.x = ptr_map->zoom * ptr_map->tile_size.x;
-	ptr_map->scaled_tile_size.y = ptr_map->zoom * ptr_map->tile_size.y /
-		(ptr_map->view_mode == ISOMETRIC ? 2 : 1);
-	ptr_map->scaled_height_ratio = ptr_map->height_ratio * ptr_map->zoom;
+	t_map_change_zoom(ptr_map, 1.0f);
 }
 
 void	t_map_calc_offset(t_application *ptr_app, t_map *ptr_map)

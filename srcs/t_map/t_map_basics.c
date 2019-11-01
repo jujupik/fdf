@@ -12,11 +12,28 @@
 
 #include "fdf.h"
 
+static void read_map_file(t_map *ptr_map)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(ptr_map->path, O_RDONLY);
+	if (fd < 0)
+		error_exit(1, "Can't open a file");
+	while (get_next_line(fd, &line) > 0)
+	{
+		t_map_add_line(ptr_map, line);
+		if (line != NULL)
+			free(line);
+		line = NULL;
+	}
+	if (ptr_map->nb_elem.x == 0 || ptr_map->nb_elem.y == 0)
+		error_exit(1, "No tile to draw in map file");
+}
+
 t_map	create_t_map(char *p_path)
 {
 	t_map	result;
-	int		fd;
-	char	*line;
 
 	result.path = p_path;
 	result.nb_elem = create_t_vector2i(0, 0);
@@ -27,23 +44,13 @@ t_map	create_t_map(char *p_path)
 	result.offset = create_t_vector2i(0, 0);
 	result.zoom = -1.0f;
 	result.height_ratio = 5.5f;
-	result.view_mode = ORTHOGONAL;
 	result.height_tab = NULL;
-	fd = open(result.path, O_RDONLY);
-	if (fd < 0)
-		error_exit(1, "Can't open a file");
-	while (get_next_line(fd, &line) > 0)
-	{
-		t_map_add_line(&result, line);
-		if (line != NULL)
-			free(line);
-		line = NULL;
-	}
-	if (result.nb_elem.x == 0 || result.nb_elem.y == 0)
-		error_exit(1, "No tile to draw in map file");
+	read_map_file(&result);
 	result.tile_offset = create_t_vector2f(((float)(result.nb_elem.x)
 		- 1.0f) / 2.0f, ((float)(result.nb_elem.y) - 1.0f) / 2.0f);
 	create_point_on_screen(&result);
+	result.floor = create_t_color(255, 0, 0, 255);
+	result.not_floor = create_t_color(0, 255, 255, 255);
 	return (result);
 }
 

@@ -28,7 +28,6 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-
 int					get_next_line(const int fd, char **line);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t len);
@@ -90,18 +89,18 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				error_exit(int nb, char *str);
 int					ft_tab_len(char **tab);
-void 				ft_tab_free(char **tab);
+void				ft_tab_free(char **tab);
 int					*ft_intparse_tab(char **tab);
 int					**ft_inttab_new(int size);
-int 				*ft_int_str_new(int size);
-void 				ft_inttab_cpy(int **dest, int **src);
-void 				ft_puttab(char **tab);
-void 				ft_putinttab(int **tab, int len);
-int 				ft_abs(int src);
-void 				ft_swap_int(int *a, int *b);
-void 				ft_swap_float(float *a, float *b);
-int 				ft_min(int nb_number, ...);
-int 				ft_max(int nb_number, ...);
+int					*ft_int_str_new(int size);
+void				ft_inttab_cpy(int **dest, int **src);
+void				ft_puttab(char **tab);
+void				ft_putinttab(int **tab, int len);
+int					ft_abs(int src);
+void				ft_swap_int(int *a, int *b);
+void				ft_swap_float(float *a, float *b);
+int					ft_min(int nb_number, ...);
+int					ft_max(int nb_number, ...);
 void				ft_get_leaks(char *prog_name, char *msg);
 
 #endif

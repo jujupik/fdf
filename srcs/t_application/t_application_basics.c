@@ -12,10 +12,14 @@
 
 #include "fdf.h"
 
-t_application	create_t_application(char *prog_name, int width, int height)
+t_application	create_t_application(char *prog_name, int width, int height, int seed)
 {
 	t_application	result;
+	time_t t;
 
+	if (seed == -1)
+		seed = (int)time(&t);
+	srand(seed);
 	result.mlx_ptr = NULL;
 	result.win_ptr = NULL;
 	result.mlx_ptr = mlx_init();
@@ -29,14 +33,14 @@ t_application	create_t_application(char *prog_name, int width, int height)
 	return (result);
 }
 
-t_application	*malloc_t_application(char *prog_name, int width, int height)
+t_application	*malloc_t_application(char *prog_name, int width, int height, int seed)
 {
 	t_application	*result;
 
 	result = (t_application *)malloc(sizeof(t_application));
 	if (result == NULL)
 		error_exit(1, "Error malloc_t_application");
-	*result = create_t_application(prog_name, width, height);
+	*result = create_t_application(prog_name, width, height, seed);
 	return (result);
 }
 

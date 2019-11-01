@@ -12,7 +12,8 @@
 
 #include "fdf.h"
 
-int	run_t_application(t_application *app, int funct_ptr(int, void *),
+/*
+void	set_control_t_application(t_application *app, int funct_ptr(int, void *),
 	void *param)
 {
 	void *ptr_strange[2];
@@ -21,6 +22,38 @@ int	run_t_application(t_application *app, int funct_ptr(int, void *),
 	ptr_strange[1] = param;
 	if (funct_ptr != NULL)
 		mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, funct_ptr, ptr_strange);
+}
+
+void	set_loop_t_application(t_application *app, int funct_ptr(void *),
+	void *param)
+{
+	void *ptr_strange_2[2];
+
+	ptr_strange_2[0] = app;
+	ptr_strange_2[1] = param;
+	if (funct_ptr != NULL)
+		mlx_loop_hook(app->mlx_ptr, funct_ptr, ptr_strange_2);
+}
+
+int	run_t_application(t_application *app)
+{
+	mlx_loop(app->mlx_ptr);
+	return (0);
+}
+*/
+
+int	run_t_application(t_application *app,
+	int funct_ptr_loop(void *), int funct_ptr_control(int, void *),
+	void *param)
+{
+	void *ptr_strange[2];
+
+	ptr_strange[0] = app;
+	ptr_strange[1] = param;
+	if (funct_ptr_control != NULL)
+		mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, funct_ptr_control, ptr_strange);
+	if (funct_ptr_loop != NULL)
+		mlx_loop_hook(app->mlx_ptr, funct_ptr_loop, ptr_strange);
 	mlx_loop(app->mlx_ptr);
 	return (0);
 }

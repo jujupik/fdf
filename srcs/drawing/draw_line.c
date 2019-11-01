@@ -24,8 +24,17 @@ static void	true_draw_line_fade(t_application *app, t_pixel start, t_pixel end)
 	pixels = calc_line_2d(start.pos, end.pos);
 	if (is_t_vector2i_equal(t_vector2i_list_at(&pixels, 0), start.pos) == FALSE)
 		swap_t_color(&start.color, &end.color);
+
 	delta = t_color_divide_by_int(t_color_substract(end.color, start.color),
 		pixels.len);
+
+	if (start.color.r != end.color.r)
+	{
+	printf("Start : %f / %f / %f / %f\n", start.color.r, start.color.g, start.color.b, start.color.a);
+	printf("End : %f / %f / %f / %f\n", end.color.r, end.color.g, end.color.b, end.color.a);
+	printf("delta : %f / %f / %f / %f\n", delta.r, delta.g, delta.b, delta.a);
+	printf("len : %d\n", pixels.len);
+	}
 	index = 0;
 	while (index < pixels.len)
 	{

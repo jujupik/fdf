@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_swap_int.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/01 13:25:24 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/11/01 13:25:26 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void ft_swap_int(int *a, int *b)
+void	ft_swap_int(int *a, int *b)
 {
-    int tmp;
+	int	tmp;
 
-    if (a == NULL || b == NULL)
-        return ;
-
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
+	if (a == NULL || b == NULL)
+		return ;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

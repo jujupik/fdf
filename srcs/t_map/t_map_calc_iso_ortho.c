@@ -41,18 +41,18 @@ t_vector2i			convert_world_to_screen(t_map *ptr_map, int x, int y,
 {
 	if (x < 0 || y < 0 || x >= ptr_map->nb_elem.x || y >= ptr_map->nb_elem.y)
 	{
-		if (ptr_map->view_mode == ORTHOGONAL)
-			return (calc_ortho(ptr_map, x, y, height));
-		else if (ptr_map->view_mode == ISOMETRIC)
+		if (ptr_map->view_mode == ISOMETRIC)
 			return (calc_iso(ptr_map, x, y, height));
+		else
+			return (calc_ortho(ptr_map, x, y, height));
 	}
 	if (is_t_vector2i_equal(ptr_map->point_on_screen[x][y],
 		create_t_vector2i(-1, -1)) == TRUE)
 	{
-		if (ptr_map->view_mode == ORTHOGONAL)
-			ptr_map->point_on_screen[x][y] = calc_ortho(ptr_map, x, y, height);
-		else if (ptr_map->view_mode == ISOMETRIC)
+		if (ptr_map->view_mode == ISOMETRIC)
 			ptr_map->point_on_screen[x][y] = calc_iso(ptr_map, x, y, height);
+		else
+			ptr_map->point_on_screen[x][y] = calc_ortho(ptr_map, x, y, height);
 	}
 	return (ptr_map->point_on_screen[x][y]);
 }

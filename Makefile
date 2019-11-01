@@ -38,7 +38,7 @@ LIB = ft
 ##
 
 ##Basics flags
-CFLAGS=		-Werror -Wextra -Wall
+CFLAGS=		-Werror -Wextra -Wall -fsanitize=address
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir))

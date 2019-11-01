@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_event_define.h                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/01 13:57:38 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/11/01 13:57:40 by jrouchon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_EVENT_DEFINE_H
-#define FDF_EVENT_DEFINE_H
+# define FDF_EVENT_DEFINE_H
 
 # define NOEVENTMASK 0L
 # define KEYPRESSMASK (1L<<0)
