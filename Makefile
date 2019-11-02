@@ -23,7 +23,34 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 DWL =		brew
 
 ##List every .c found inside SRC_DIR
-SRC = 		$(foreach dir, $(SRC_DIR), $(foreach file, $(wildcard $(dir)/*.c), $(notdir $(file))))
+SRC =		handle_key.c \
+			main.c \
+			bresenham.c \
+			generate_nbr.c \
+			draw_line.c \
+			draw_point.c \
+			drawing_pixel.c \
+			t_vector2i_list.c \
+			t_vector2i_list_basics.c \
+			t_application.c \
+			t_application_basics.c \
+			t_application_run.c \
+			t_color.c \
+			t_color_basics.c \
+			t_color_calc.c \
+			t_color_calc_int.c \
+			t_map.c \
+			t_map_basics.c \
+			t_map_calc.c \
+			t_map_calc_iso_ortho.c \
+			t_map_change.c \
+			t_map_color.c \
+			t_map_draw.c \
+			t_pixel.c \
+			fdf_t_vector2f.c \
+			fdf_t_vector2f_array.c \
+			fdf_t_vector2i.c \
+			fdf_t_vector2i_array.c
 
 ##Transform and place every .o from SRC
 OBJ=		$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
@@ -38,7 +65,7 @@ LIB = ft
 ##
 
 ##Basics flags
-CFLAGS=		-Werror -Wextra -Wall -fsanitize=address
+CFLAGS=		-Werror -Wextra -Wall
 
 ##Create the flags to includes every .h needed by this program
 IFLAGS =	$(foreach dir, $(INC_DIR), -I$(dir))
