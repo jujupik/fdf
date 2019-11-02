@@ -29,6 +29,6 @@
 void		draw_fdf(t_application *ptr_app, t_map *ptr_map);
 int			handle_key(int key, void *param);
 void		parse_argv(int argc, char **argv, t_map *ptr_map);
-void		print_usage(void);
+void		print_usage(char *msg);
 
 #endif

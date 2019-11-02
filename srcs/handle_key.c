@@ -69,6 +69,8 @@ void		parse_argv(int argc, char **argv, t_map *ptr_map)
 	i = 2;
 	while (i < argc)
 	{
+		if (ft_strcmp(argv[i], "--h") == 0)
+			print_usage(NULL);
 		if (ft_strcmp(argv[i], "--c1") == 0)
 			t_map_set_color(ptr_map, 1, argv[i + 1]);
 		else if (ft_strcmp(argv[i], "--c2") == 0)
@@ -77,11 +79,13 @@ void		parse_argv(int argc, char **argv, t_map *ptr_map)
 		{
 			if (ft_strcmp(argv[i + 1], "ORTHOGONAL") == 0)
 				t_map_change_view_mode(ptr_map, ORTHOGONAL);
-			if (ft_strcmp(argv[i + 1], "ISOMETRIC") == 0)
+			else if (ft_strcmp(argv[i + 1], "ISOMETRIC") == 0)
 				t_map_change_view_mode(ptr_map, ISOMETRIC);
+			else
+				print_usage("Error : Bad mode argument");
 		}
 		else
-			print_usage();
+			print_usage("Bad prefix given");
 		i += 2;
 	}
 }

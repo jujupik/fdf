@@ -12,8 +12,13 @@
 
 #include "fdf.h"
 
-void		print_usage(void)
+void		print_usage(char *msg)
 {
+	if (msg != NULL)
+	{
+		ft_putstr_fd(msg, 2);
+		ft_putchar_fd('\n', 2);
+	}
 	ft_putstr_fd(TEXT_ERROR, 2);
 	ft_putstr_fd(USAGE, 2);
 	ft_putstr_fd(MODE_CONTENT, 2);
@@ -25,8 +30,8 @@ int			main(int argc, char **argv)
 	t_application	app;
 	t_map			map;
 
-	if (argc < 2 || argc % 2 != 0)
-		print_usage();
+	if (argc < 2 || argc % 2 != 0 || ft_strcmp(argv[1], "--h") == 0)
+		print_usage(NULL);
 	app = create_t_application("fdf", 1250, 1080, 15889);
 	map = create_t_map(argv[1]);
 	parse_argv(argc, argv, &map);
