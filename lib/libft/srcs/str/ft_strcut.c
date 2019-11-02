@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 17:27:34 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/29 15:06:53 by jrouchon         ###   ########.fr       */
+/*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/06/21 15:51:12 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strcut(char **src, char delim)
 {
-	char	*str;
+	size_t	i;
+	char	*result;
+	char	*tmp;
 
-	if (s1 == NULL && s2 != NULL)
-		return (ft_strdup(s2));
-	if (s2 == NULL && s1 != NULL)
-		return (ft_strdup(s1));
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
+	i = 0;
+	if (*src == NULL)
 		return (NULL);
-	str[0] = '\0';
-	ft_strcat(str, (char *)s1);
-	ft_strcat(str, (char *)s2);
-	return (str);
+	while ((*src)[i] != delim && (*src)[i] != '\0')
+	{
+		i++;
+	}
+	if (i == ft_strlen(*src))
+	{
+		result = ft_strdup(*src);
+		*src[0] = '\0';
+	}
+	else
+	{
+		result = ft_strsub(*src, 0, i);
+		tmp = *src;
+		*src = ft_strsub(tmp, i + 1, ft_strlen(tmp));
+		free(tmp);
+	}
+	return (result);
 }

@@ -28,3 +28,4 @@
 109 : Can't malloc a t_vector2i **
 110 : Can't malloc a t_vector2i *
 111 : Can't malloc a t_vector2i
+112 : Can't malloc a char *

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 17:27:34 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/01/29 15:06:53 by jrouchon         ###   ########.fr       */
+/*   Created: 2019/05/15 14:31:51 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/06/21 15:51:12 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int			ft_strcchr(char *str, char c)
 {
-	char	*str;
+	int i;
 
-	if (s1 == NULL && s2 != NULL)
-		return (ft_strdup(s2));
-	if (s2 == NULL && s1 != NULL)
-		return (ft_strdup(s1));
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str == NULL)
-		return (NULL);
-	str[0] = '\0';
-	ft_strcat(str, (char *)s1);
-	ft_strcat(str, (char *)s2);
-	return (str);
+		return (-1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }

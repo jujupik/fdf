@@ -109,5 +109,7 @@ void				ft_swap_float(float *a, float *b);
 int					ft_min(int nb_number, ...);
 int					ft_max(int nb_number, ...);
 void				ft_get_leaks(char *prog_name, char *msg);
+int					ft_strcchr(char *str, char c);
+char				*ft_strcut(char **src, char delim);
 
 #endif

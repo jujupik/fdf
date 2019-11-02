@@ -16,6 +16,8 @@ char	*ft_strnew(size_t len)
 {
 	char *str;
 
-	str = (char*)ft_memalloc(len + 1);
+	str = (char*)ft_memalloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		error_exit(112, "Can't malloc a char *");
 	return (str);
 }
