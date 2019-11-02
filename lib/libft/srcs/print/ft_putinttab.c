@@ -18,7 +18,7 @@ void	ft_putinttab(int **tab, int len)
 	int	i;
 
 	if (tab == NULL)
-		error_exit(1, "No int tab to print");
+		error_exit(3, "No int tab to print");
 	i = 0;
 	while (tab[i] != NULL)
 	{

@@ -15,8 +15,6 @@
 
 # define ORTHOGONAL 0
 # define ISOMETRIC 1
-# define MOVING_ORTHOGONAL 2
-# define MOVING_ISOMETRIC 3
 
 # define B_COMP 0
 # define G_COMP 1

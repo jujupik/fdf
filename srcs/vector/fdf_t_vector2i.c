@@ -27,7 +27,7 @@ t_vector2i	*malloc_t_vector2i(int p_x, int p_y)
 
 	result = (t_vector2i *)malloc(sizeof(t_vector2i));
 	if (result == NULL)
-		error_exit(32, "Can't malloc a t_vector2i");
+		error_exit(111, "Can't malloc a t_vector2i");
 	*result = create_t_vector2i(p_x, p_y);
 	return (result);
 }

@@ -30,7 +30,7 @@ t_vector2i_list	*malloc_t_vector2i_list(int p_line_len)
 
 	result = (t_vector2i_list *)malloc(sizeof(t_vector2i_list));
 	if (result == NULL)
-		error_exit(1, "Can't malloc t_vector2i_list");
+		error_exit(101, "Can't malloc t_vector2i_list");
 	*result = create_t_vector2i_list(p_line_len);
 	return (result);
 }

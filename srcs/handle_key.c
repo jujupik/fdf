@@ -25,10 +25,6 @@ static void	handle_key_one(int key, t_map *ptr_map)
 		t_map_change_view_mode(ptr_map, ORTHOGONAL);
 	else if (key == K2_KEY)
 		t_map_change_view_mode(ptr_map, ISOMETRIC);
-	else if (key == K3_KEY)
-		t_map_change_view_mode(ptr_map, MOVING_ORTHOGONAL);
-	else if (key == K4_KEY)
-		t_map_change_view_mode(ptr_map, MOVING_ISOMETRIC);
 	else if (key == ESC_KEY)
 		exit(0);
 }

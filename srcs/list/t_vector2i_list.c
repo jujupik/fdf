@@ -20,7 +20,7 @@ void			t_vector2i_list_add(t_vector2i_list *list, t_vector2i to_add)
 	int			nb_index;
 
 	if (list->data == NULL)
-		error_exit(1, "No data in t_vector2i_list");
+		error_exit(5, "No data in t_vector2i_list");
 	nb_du_null = list->max_len / list->line_len;
 	if (list->len == list->max_len - 1)
 	{

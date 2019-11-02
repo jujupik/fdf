@@ -50,13 +50,13 @@ void	t_map_add_line(t_map *ptr_map, char *line)
 	int		**tmp;
 
 	if (ptr_map == NULL && line == NULL)
-		error_exit(24, "Error in t_map_add_line");
+		error_exit(13, "Error in t_map_add_line");
 	tab = ft_strsplit(line, ' ');
 	len = ft_tab_len(tab);
 	if (ptr_map->nb_elem.x == 0)
 		ptr_map->nb_elem.x = len;
 	if (ptr_map->nb_elem.x != len)
-		error_exit(1, "Bad line in ptr_map");
+		error_exit(14, "Bad line in ptr_map");
 	ptr_map->nb_elem.y++;
 	tmp = ft_inttab_new(ptr_map->nb_elem.y);
 	if (ptr_map->height_tab != NULL)

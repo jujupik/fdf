@@ -72,6 +72,8 @@ char	*readfd(int fd, char **str)
 		return (*str);
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
+		if (buff[0] == '\0')
+			return (ft_strjoin(tmp, buff));
 		buff[ret] = '\0';
 		tmp = *str;
 		if (!(*str = ft_strjoin(tmp, buff)))

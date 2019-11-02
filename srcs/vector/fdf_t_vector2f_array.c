@@ -19,7 +19,7 @@ t_vector2f	**new_t_vector2f_tab(size_t size)
 
 	result = (t_vector2f **)malloc(sizeof(t_vector2f *) * (size + 1));
 	if (result == NULL)
-		error_exit(1, "Can't malloc a t_vector2f **");
+		error_exit(106, "Can't malloc a t_vector2f **");
 	i = 0;
 	while (i < size + 1)
 	{
@@ -36,7 +36,7 @@ t_vector2f	*new_t_vector2f_array(size_t size)
 
 	result = (t_vector2f *)malloc(sizeof(t_vector2f) * size);
 	if (result == NULL)
-		error_exit(1, "Can't malloc a t_vector2f *");
+		error_exit(107, "Can't malloc a t_vector2f *");
 	i = 0;
 	while (i < size)
 	{

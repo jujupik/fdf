@@ -27,7 +27,7 @@ t_pixel	*malloc_t_pixel(t_vector2i p_pos, t_color p_color)
 
 	result = (t_pixel *)malloc(sizeof(t_pixel));
 	if (result == NULL)
-		error_exit(1, "Can't malloc t_pixel.");
+		error_exit(105, "Can't malloc t_pixel");
 	*result = create_t_pixel(p_pos, p_color);
 	return (result);
 }

@@ -25,7 +25,7 @@ t_application	create_t_application(char *prog_name, int width, int height,
 	result.win_ptr = NULL;
 	result.mlx_ptr = mlx_init();
 	if (result.mlx_ptr == NULL)
-		error_exit(1, "Can't create a window");
+		error_exit(6, "Can't create a window");
 	result.win_ptr = mlx_new_window(result.mlx_ptr, width, height, prog_name);
 	result.size = create_t_vector2i(width, height);
 	result.img_ptr = mlx_new_image(result.mlx_ptr, width, height);
@@ -41,7 +41,7 @@ t_application	*malloc_t_application(char *prog_name, int width, int height,
 
 	result = (t_application *)malloc(sizeof(t_application));
 	if (result == NULL)
-		error_exit(1, "Error malloc_t_application");
+		error_exit(102, "Error malloc_t_application");
 	*result = create_t_application(prog_name, width, height, seed);
 	return (result);
 }
@@ -49,9 +49,9 @@ t_application	*malloc_t_application(char *prog_name, int width, int height,
 void			delete_t_application(t_application app)
 {
 	if (mlx_destroy_image(app.mlx_ptr, app.img_ptr) == 0)
-		error_exit(1, "Can't destroy image");
+		error_exit(7, "Can't destroy image");
 	if (mlx_destroy_window(app.mlx_ptr, app.win_ptr) == 0)
-		error_exit(1, "Can't destroy a window");
+		error_exit(8, "Can't destroy a window");
 	app.pixels = NULL;
 	app.img_ptr = NULL;
 	app.mlx_ptr = NULL;

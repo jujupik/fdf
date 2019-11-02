@@ -21,7 +21,7 @@ void			t_map_set_color(t_map *ptr_map, int color_num, char *argv)
 	tab = ft_strsplit(argv, ' ');
 	len = ft_tab_len(tab);
 	if (len != 3 && len != 4)
-		error_exit(1, "Bad composition in color argument");
+		error_exit(12, "Bad composition in color argument");
 	color = create_t_color(ft_atoi(tab[0]), ft_atoi(tab[1]),
 			ft_atoi(tab[2]), (len == 3 ? 255 : ft_atoi(tab[3])));
 	if (color_num == 1)

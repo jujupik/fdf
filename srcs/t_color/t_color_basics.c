@@ -29,7 +29,7 @@ t_color	*malloc_t_color(float p_r, float p_g, float p_b, float p_a)
 
 	result = (t_color *)malloc(sizeof(t_color));
 	if (result == NULL)
-		error_exit(1, "Can't malloc t_color");
+		error_exit(103, "Can't malloc t_color");
 	*result = create_t_color(p_r, p_g, p_b, p_a);
 	return (result);
 }

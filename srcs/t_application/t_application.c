@@ -39,7 +39,7 @@ void			render_screen(t_application *app)
 	ret = mlx_put_image_to_window(app->mlx_ptr, app->win_ptr,
 		app->img_ptr, 0, 0);
 	if (ret == 0)
-		error_exit(1, "Can't render screen");
+		error_exit(9, "Can't render screen");
 }
 
 BOOL			is_point_on_screen(t_application *ptr_app, t_vector2i point)

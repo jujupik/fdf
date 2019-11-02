@@ -1,0 +1,30 @@
+0 : No error
+1 : Src is null in ft_inttab_cpy
+2 : Dest is null in ft_inttab_cpy
+3 : No int tab to print
+4 : No char tab to print
+5 : No data in t_vector2i_list
+6 : Can't create a window
+7 : Can't destroy image
+8 : Can't destroy a window
+9 : Can't render screen
+10: Can't open a file
+11: No tile to draw in map file
+12: Bad composition in color argument
+13: Error in t_map_add_line
+14: Bad line in ptr_map
+
+50 : Error in ft_intparse_tab
+
+100 : Can't malloc a int **
+101 : Can't malloc t_vector2i_list
+102 : Error malloc_t_application
+103 : Can't malloc t_color
+104 : Can't malloc t_map
+105 : Can't malloc t_pixel
+106 : Can't malloc a t_vector2f **
+107 : Can't malloc a t_vector2f *
+108 : Can't malloc a t_vector2f
+109 : Can't malloc a t_vector2i **
+110 : Can't malloc a t_vector2i *
+111 : Can't malloc a t_vector2i

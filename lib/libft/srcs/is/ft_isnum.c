@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inttab_cpy.c                                    :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrouchon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 13:33:02 by jrouchon          #+#    #+#             */
-/*   Updated: 2019/11/01 13:33:04 by jrouchon         ###   ########.fr       */
+/*   Created: 2019/01/16 14:42:31 by jrouchon          #+#    #+#             */
+/*   Updated: 2019/01/28 20:49:35 by jrouchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_inttab_cpy(int **dest, int **src)
+BOOL	ft_isnum(int c)
 {
-	int	i;
+	if ((c < '0' || c > '9') && c != '-' && c != '+')
+		return (FALSE);
+	return (TRUE);
+}
 
-	if (src == NULL)
-		error_exit(1, "Src is null in ft_inttab_cpy");
-	if (dest == NULL)
-		error_exit(2, "Dest is null in ft_inttab_cpy");
+BOOL	ft_strisnum(char *str)
+{
+	int i;
+
 	i = 0;
-	while (src[i] != NULL)
+	while (str[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (ft_isnum(str[i]) == FALSE)
+			return (FALSE);
 		i++;
 	}
-	dest[i] = NULL;
+	return (TRUE);
 }

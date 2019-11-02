@@ -36,7 +36,7 @@ SRC = 		ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_lstmap.c get_next_line.c error_exit.c ft_tab_len.c \
 	  ft_intstr_new.c ft_inttab_new.c ft_tab_free.c ft_intparse_tab.c \
 	  ft_inttab_cpy.c ft_puttab.c ft_putinttab.c ft_abs.c ft_swap_int.c \
-	  ft_min.c ft_max.c ft_swap_float.c ft_get_leaks.c
+	  ft_min.c ft_max.c ft_swap_float.c ft_get_leaks.c ft_isnum.c
 
 ##Transform and place every .o from SRC
 OBJ=		$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

@@ -19,7 +19,7 @@ static void	read_map_file(t_map *ptr_map)
 
 	fd = open(ptr_map->path, O_RDONLY);
 	if (fd < 0)
-		error_exit(1, "Can't open a file");
+		error_exit(10, "Can't open a file");
 	while (get_next_line(fd, &line) > 0)
 	{
 		t_map_add_line(ptr_map, line);
@@ -28,7 +28,7 @@ static void	read_map_file(t_map *ptr_map)
 		line = NULL;
 	}
 	if (ptr_map->nb_elem.x == 0 || ptr_map->nb_elem.y == 0)
-		error_exit(1, "No tile to draw in map file");
+		error_exit(11, "No tile to draw in map file");
 }
 
 t_map		create_t_map(char *p_path)
@@ -60,7 +60,7 @@ t_map		*malloc_t_map(char *p_path)
 
 	result = (t_map *)malloc(sizeof(t_map));
 	if (result == NULL)
-		error_exit(34, "error malloc t_map");
+		error_exit(104, "Can't malloc t_map");
 	*result = create_t_map(p_path);
 	return (result);
 }
