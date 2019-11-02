@@ -13,6 +13,7 @@
 12: Bad composition in color argument
 13: Error in t_map_add_line
 14: Bad line in ptr_map
+15: Can't parse a line in file
 
 50 : Error in ft_intparse_tab
 

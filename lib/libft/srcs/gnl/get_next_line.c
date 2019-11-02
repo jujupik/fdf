@@ -12,6 +12,20 @@
 
 #include "libft.h"
 
+BOOL			is_only_compose(char *src, char c, size_t len)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < len)
+	{
+		if (src[i] != c)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
 int				get_next_line(const int fd, char **line)
 {
 	int			result;
@@ -25,6 +39,11 @@ int				get_next_line(const int fd, char **line)
 		if (result == 0)
 			break ;
 		buff[result] = '\0';
+		if (is_only_compose(buff, '\0', BUFF_SIZE) == TRUE)
+		{
+			*line = NULL;
+			return (0);
+		}
 		saved[fd] = ft_strjoin(saved[fd], buff);
 	}
 	*line = ft_strcut(&(saved[fd]), '\n');

@@ -22,6 +22,8 @@ static void	read_map_file(t_map *ptr_map)
 		error_exit(10, "Can't open a file");
 	while (get_next_line(fd, &line) > 0)
 	{
+		if (line == NULL)
+			error_exit(15, "Can't parse a line in file");
 		t_map_add_line(ptr_map, line);
 		if (line != NULL)
 			free(line);
